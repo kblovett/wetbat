@@ -66,9 +66,12 @@ CREATE TABLE bookings
     depart_loc VARCHAR(255),
     depart_date DATE,
     dest_loc VARCHAR(255),
-    dest_date DATE,
+    return_date DATE,
     booking_cost FLOAT,
     PRIMARY KEY(booking_id),
+    CONSTRAINT fk_agent
+      FOREIGN KEY(agent_id) 
+	  REFERENCES agents(agent_id),
     CONSTRAINT fk_traveller
       FOREIGN KEY(traveller_id) 
 	  REFERENCES travellers(traveller_id)
