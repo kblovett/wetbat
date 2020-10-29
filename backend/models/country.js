@@ -1,20 +1,20 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Province extends Model {}
+  class Country extends Model {}
 
-  Province.init(
+  Country.init(
     {
       name: DataTypes.STRING,
       code: DataTypes.STRING,
     },
     {
       sequelize,
-      modelName: 'Province',
+      modelName: 'Country',
     }
   );
-  Province.associate = function (models) {
-    Province.belongsTo(models.Traveller);
+  Country.assoiciate = function (models) {
+    Country.belongsTo(models.Traveller);
   };
-  return Province;
+  return Country;
 };
