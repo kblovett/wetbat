@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       depart_loc: DataTypes.STRING,
       depart_date: DataTypes.DATE,
       dest_loc: DataTypes.STRING,
-      dest_date: DataTypes.DATE,
+      return_date: DataTypes.DATE,
       booking_cost: DataTypes.FLOAT,
     },
     {

@@ -34,7 +34,7 @@ module.exports = {
       dest_loc: {
         type: Sequelize.STRING,
       },
-      dest_date: {
+      return_date: {
         type: Sequelize.DATE,
       },
       booking_cost: {

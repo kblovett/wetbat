@@ -1,5 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Traveller extends Model {}
 
@@ -21,10 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   Traveller.associate = function (models) {
-    Traveller.hasOne(models.Province, models.Country);
+    Traveller.hasOne(models.Province);
+    Traveller.hasOne(models.Country);
     Traveller.hasMany(models.Booking);
   };
   return Traveller;
 };
-
-// npx sequelize model:generate --name Traveller --attributes fname:string,lname:string,phone:string,email:string,address_line1:string,address_line2:string,city:string,province_id:integer,country_id:integer
