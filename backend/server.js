@@ -14,12 +14,14 @@ db.authenticate()
 
 // Route imports
 const { agentRouter } = require('./routes/agentRoutes');
+const { travellerRouter } = require('./routes/travellerRoutes');
 
 const app = express();
 app.use(express.json());
 
 // routes
 app.use('/api/agents', agentRouter);
+app.use('/api/travellers', travellerRouter);
 
 // 404 and errorhandler middleware
 app.use(notFound);

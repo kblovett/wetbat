@@ -16,12 +16,13 @@ const registerAgent = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Already registered');
   } else {
+    const salt = await bcrypt.genSalt(10);
     const agent = await Agent.create({
       fname,
       lname,
       phone,
       email,
-      password,
+      password: await bcrypt.hash(password, salt),
     });
     if (agent) {
       const { id, fname, lname, phone, email } = agent;
@@ -36,7 +37,7 @@ const registerAgent = asyncHandler(async (req, res) => {
       });
     } else {
       res.status(400);
-      throw new Error('Invalid agent data');
+      throw new Error('Invalid Agent data');
     }
   }
 });
