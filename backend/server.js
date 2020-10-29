@@ -5,8 +5,14 @@ const colors = require('colors');
 const { errorHandler, notFound } = require('./middleware/errorMiddleware');
 const db = require('./models');
 
+// Route imports
+const { agentRouter } = require('./routes/agentRoutes');
+
 const app = express();
 app.use(express.json());
+
+// routes
+app.use('/api/agents', agentRouter);
 
 app.use(notFound);
 app.use(errorHandler);
