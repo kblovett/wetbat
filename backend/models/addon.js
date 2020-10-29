@@ -1,19 +1,18 @@
 'use strict';
 const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
-  class Extras extends Model {}
-  Extras.init(
+  class Addon extends Model {}
+
+  Addon.init(
     {
       description: DataTypes.STRING,
       cost: DataTypes.FLOAT,
     },
     {
       sequelize,
-      modelName: 'Extras',
+      modelName: 'Addon',
     }
   );
-  Extras.associate = function (models) {
-    Extras.belongsTo(models.Booking_Extras);
-  };
-  return Extras;
+  return Addon;
 };

@@ -1,5 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Province extends Model {}
 
@@ -13,8 +14,5 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'Province',
     }
   );
-  Province.associate = function (models) {
-    Province.belongsTo(models.Traveller);
-  };
   return Province;
 };

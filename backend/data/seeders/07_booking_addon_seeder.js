@@ -2,16 +2,16 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('Extras', [
+    await queryInterface.bulkInsert('Booking_Addons', [
       {
-        description: 'Car Rental',
-        cost: 199.99,
+        booking_id: 1,
+        addon_id: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        description: 'Hotel',
-        cost: 1999.99,
+        booking_id: 1,
+        addon_id: 2,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -19,6 +19,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('Extras', null, {});
+    await queryInterface.bulkDelete('Booking_Addons', null, {});
   },
 };

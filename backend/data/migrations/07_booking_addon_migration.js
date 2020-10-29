@@ -1,8 +1,8 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Booking_Extras', {
-      booking_extra_id: {
+    await queryInterface.createTable('Booking_Addons', {
+      booking_addon_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -15,11 +15,11 @@ module.exports = {
           key: 'booking_id',
         },
       },
-      extra_id: {
+      addon_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Extras',
-          key: 'extra_id',
+          model: 'Addons',
+          key: 'addon_id',
         },
       },
       createdAt: {
@@ -33,6 +33,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Booking_Extras');
+    await queryInterface.dropTable('Booking_Addons');
   },
 };

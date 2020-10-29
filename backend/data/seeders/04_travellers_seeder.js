@@ -11,7 +11,7 @@ module.exports = {
         address_line1: '20 Penrith Place SE',
         address_line2: null,
         city: 'Calgary',
-        province_id: 29,
+        province_id: 2,
         country_id: 1,
         createdAt: new Date(),
         updatedAt: new Date(),

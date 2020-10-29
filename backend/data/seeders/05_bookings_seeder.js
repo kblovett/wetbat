@@ -4,8 +4,8 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('Bookings', [
       {
-        agent_id: '61e20a4a-f6f8-4ec5-927d-a5fe833c7187',
-        traveller_id: 2,
+        agent_id: '7414e4db-afc2-44a9-b1fe-84544d6ede4a',
+        traveller_id: 1,
         passengers: 0,
         depart_loc: 'Calgary, AB',
         depart_date: '2020-10-30',

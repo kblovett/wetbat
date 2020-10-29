@@ -13,18 +13,25 @@ module.exports = (sequelize, DataTypes) => {
       address_line1: DataTypes.STRING,
       address_line2: DataTypes.STRING,
       city: DataTypes.STRING,
-      province_id: DataTypes.INTEGER,
-      country_id: DataTypes.INTEGER,
+      province_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'Provinces',
+          key: 'province_id',
+        },
+      },
+      country_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'Countries',
+          key: 'country_id',
+        },
+      },
     },
     {
       sequelize,
       modelName: 'Traveller',
     }
   );
-  Traveller.associate = function (models) {
-    Traveller.hasOne(models.Province);
-    Traveller.hasOne(models.Country);
-    Traveller.hasMany(models.Booking);
-  };
   return Traveller;
 };
