@@ -2,7 +2,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Booking_Addons', {
-      booking_addon_id: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -12,14 +12,14 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'Bookings',
-          key: 'booking_id',
+          key: 'id',
         },
       },
       addon_id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Addons',
-          key: 'addon_id',
+          key: 'id',
         },
       },
       createdAt: {

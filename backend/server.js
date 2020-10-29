@@ -2,8 +2,15 @@ const express = require('express');
 const dotenv = require('dotenv').config();
 const colors = require('colors');
 
+// middleware imports
 const { errorHandler, notFound } = require('./middleware/errorMiddleware');
-const db = require('./models');
+// db import
+const db = require('./data/db');
+
+// test db
+db.authenticate()
+  .then(() => console.log('Database connected...'))
+  .catch((err) => console.log('Error: ' + err));
 
 // Route imports
 const { agentRouter } = require('./routes/agentRoutes');
@@ -14,6 +21,7 @@ app.use(express.json());
 // routes
 app.use('/api/agents', agentRouter);
 
+// 404 and errorhandler middleware
 app.use(notFound);
 app.use(errorHandler);
 

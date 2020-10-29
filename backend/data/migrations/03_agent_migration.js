@@ -2,7 +2,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Agents', {
-      agent_id: {
+      id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,

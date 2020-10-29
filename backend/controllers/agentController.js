@@ -1,8 +1,8 @@
 const asyncHandler = require('express-async-handler');
-const { sequelize } = require('../models');
+const bcrypt = require('bcryptjs');
 
 // model imports
-const { Agent } = sequelize;
+const Agent = require('../models/agent');
 // utility imports
 const generateToken = require('../utils/generateToken.js');
 
@@ -24,15 +24,15 @@ const registerAgent = asyncHandler(async (req, res) => {
       password,
     });
     if (agent) {
-      const { agent_id, fname, lname, phone, email } = agent;
+      const { id, fname, lname, phone, email } = agent;
       res.status(201).json({
-        agent_id,
+        id,
         fname,
         lname,
         phone,
         email,
         // isAdmin,
-        token: generateToken(agent_id),
+        token: generateToken(id),
       });
     } else {
       res.status(400);
@@ -46,16 +46,19 @@ const registerAgent = asyncHandler(async (req, res) => {
 // @access  Public
 const authAgent = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
-  const agent = await Agent.findOne({ email });
-  if (agent && (await Agent.matchPassword(password))) {
-    const { agent_id, name, email } = agent;
+  // console.log(email, password);
+  const agent = await Agent.findOne({ where: { email } });
+  const agentPass = agent.getDataValue('password');
+  // console.log(agentPass, agent);
+  const passCheck = await bcrypt.compare(password, agentPass);
+  if (agent && passCheck) {
+    const { id, name, email } = agent;
     res.json({
-      agent_id,
+      id,
       name,
       email,
       // isAdmin,
-      token: generateToken(agent_id),
+      token: generateToken(id),
     });
   } else {
     res.status(401);

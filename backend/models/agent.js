@@ -1,21 +1,36 @@
 'use strict';
-const { Model } = require('sequelize');
+const { DataTypes } = require('sequelize');
+const db = require('../data/db');
+const bcrypt = require('bcryptjs');
+const { password } = require('../config/config');
 
-module.exports = (sequelize, DataTypes) => {
-  class Agent extends Model {}
+const Agent = db.define(
+  'Agent',
+  {
+    fname: DataTypes.STRING,
+    lname: DataTypes.STRING,
+    phone: DataTypes.STRING,
+    email: { type: DataTypes.STRING, unique: true },
+    password: DataTypes.STRING,
+  },
+  {
+    // hooks: {
+    //   beforeCreate: (user) => {
+    //     const salt = bcrypt.genSaltSync();
+    //     user.password = bcrypt.hashSync(user.password, salt);
+    //   },
+    // },
+    // instanceMethods: {
+    //   matchPassword: function (password) {
+    //     return bcrypt.compareSync(password, this.password);
+    //   },
+    // },
+  }
+);
 
-  Agent.init(
-    {
-      fname: DataTypes.STRING,
-      lname: DataTypes.STRING,
-      phone: DataTypes.STRING,
-      email: { type: DataTypes.STRING, unique: true },
-      password: DataTypes.STRING,
-    },
-    {
-      sequelize,
-      modelName: 'Agent',
-    }
-  );
-  return Agent;
-};
+// Agent.matchPassword = async function (enteredPassword) {
+//   console.log(enteredPassword, this.password());
+//   // return await bcrypt.compare(enteredPassword, this.getDataValue(password));
+// };
+
+module.exports = Agent;
