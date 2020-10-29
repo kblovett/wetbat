@@ -15,7 +15,7 @@ CREATE TABLE agents
   fname VARCHAR(255),
   lname VARCHAR(255),
   phone CHAR(10),
-  email VARCHAR(255),
+  email VARCHAR(255) UNIQUE,
   password VARCHAR(255),
   PRIMARY KEY(agent_id)
 );
@@ -42,7 +42,7 @@ CREATE TABLE travellers
   fname VARCHAR(255),
   lname VARCHAR(255),
   phone CHAR(10),
-  email VARCHAR(255),
+  email VARCHAR(255) UNIQUE,
   address_line1 VARCHAR(255),
   address_line2 VARCHAR(255),
   city VARCHAR(255),
