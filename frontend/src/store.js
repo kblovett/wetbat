@@ -3,11 +3,19 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // reducer imports
-import {} from 'reducers';
+import { agentLoginReducer } from 'reducers';
 
-const reducer = combineReducers({});
+const reducer = combineReducers({
+  agentLogin: agentLoginReducer,
+});
 
-const initialState = {};
+const agentInfoFromLocalStorage = localStorage.getItem('agentInfo')
+  ? JSON.parse(localStorage.getItem('agentInfo'))
+  : null;
+
+const initialState = {
+  agentLogin: { agentInfo: agentInfoFromLocalStorage },
+};
 
 const middleware = [thunk];
 
