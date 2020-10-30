@@ -13,6 +13,5 @@ const travellerRouter = express.Router();
 
 travellerRouter.route('/').get(getTravellers);
 travellerRouter.route('/:id').get(getTravellerById);
-// travellerRouter.post('/login', authAgent);
 
 module.exports = { travellerRouter };
