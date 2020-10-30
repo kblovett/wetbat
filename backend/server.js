@@ -13,9 +13,13 @@ db.authenticate()
   .catch((err) => console.log('Error: ' + err));
 
 // Route imports
-const { agentRouter } = require('./routes/agentRoutes');
-const { travellerRouter } = require('./routes/travellerRoutes');
-const { bookingRouter } = require('./routes/bookingRoutes');
+const agentRouter = require('./routes/agentRoutes');
+const travellerRouter = require('./routes/travellerRoutes');
+const bookingRouter = require('./routes/bookingRoutes');
+const provinceRouter = require('./routes/provinceRoutes');
+const countryRouter = require('./routes/countryRoutes');
+const addonRouter = require('./routes/addonRoutes');
+const booking_addonRouter = require('./routes/booking_addonRoutes');
 
 const app = express();
 app.use(express.json());
@@ -24,6 +28,10 @@ app.use(express.json());
 app.use('/api/agents', agentRouter);
 app.use('/api/travellers', travellerRouter);
 app.use('/api/bookings', bookingRouter);
+app.use('/api/provinces', provinceRouter);
+app.use('/api/countries', countryRouter);
+app.use('/api/addons', addonRouter);
+app.use('/api/booking_addons', booking_addonRouter);
 
 // 404 and errorhandler middleware
 app.use(notFound);

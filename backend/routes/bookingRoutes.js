@@ -14,4 +14,4 @@ const bookingRouter = express.Router();
 bookingRouter.route('/').get(getBookings);
 bookingRouter.route('/:id').get(getBookingById);
 
-module.exports = { bookingRouter };
+module.exports = bookingRouter;

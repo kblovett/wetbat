@@ -11,4 +11,4 @@ const agentRouter = express.Router();
 agentRouter.route('/').post(registerAgent);
 agentRouter.post('/login', authAgent);
 
-module.exports = { agentRouter };
+module.exports = agentRouter;

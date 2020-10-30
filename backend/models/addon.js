@@ -1,18 +1,10 @@
 'use strict';
-const { Model } = require('sequelize');
+const { DataTypes } = require('sequelize');
+const db = require('../data/db');
 
-module.exports = (sequelize, DataTypes) => {
-  class Addon extends Model {}
+const Addon = db.define('Addon', {
+  description: DataTypes.STRING,
+  cost: DataTypes.FLOAT,
+});
 
-  Addon.init(
-    {
-      description: DataTypes.STRING,
-      cost: DataTypes.FLOAT,
-    },
-    {
-      sequelize,
-      modelName: 'Addon',
-    }
-  );
-  return Addon;
-};
+module.exports = Addon;

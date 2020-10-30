@@ -1,18 +1,10 @@
 'use strict';
-const { Model } = require('sequelize');
+const { DataTypes } = require('sequelize');
+const db = require('../data/db');
 
-module.exports = (sequelize, DataTypes) => {
-  class Province extends Model {}
+const Province = db.define('Province', {
+  name: DataTypes.STRING,
+  code: DataTypes.STRING,
+});
 
-  Province.init(
-    {
-      name: DataTypes.STRING,
-      code: DataTypes.STRING,
-    },
-    {
-      sequelize,
-      modelName: 'Province',
-    }
-  );
-  return Province;
-};
+module.exports = Province;
