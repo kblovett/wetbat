@@ -98,3 +98,6 @@ CREATE TABLE booking_addon
       FOREIGN KEY(booking_id) 
 	  REFERENCES bookings(booking_id)
 );
+
+SELECT "Booking"."id", "Booking"."agentUuid", "Booking"."travellerId", "Booking"."passengers", "Booking"."depart_loc", "Booking"."depart_date", "Booking"."dest_loc", "Booking"."return_date", "Booking"."booking_cost", "Booking"."createdAt", "Booking"."updatedAt", "Booking"."AgentId", "Agent"."id" AS "Agent.id", "Agent"."agentUuid" AS "Agent.agentUuid", "Agent"."fname" AS "Agent.fname", "Agent"."lname" AS "Agent.lname", "Agent"."phone" AS "Agent.phone", "Agent"."email" AS "Agent.email", "Agent"."password" AS "Agent.password", "Agent"."createdAt" AS "Agent.createdAt", "Agent"."updatedAt" AS "Agent.updatedAt"
+FROM "Bookings" AS "Booking" LEFT OUTER JOIN "Agents" AS "Agent" ON "Booking"."AgentId" = "Agent"."agentUuid";

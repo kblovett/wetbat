@@ -6,6 +6,7 @@ import {
   AGENT_LOGIN_SUCCESS,
   AGENT_LOGIN_FAIL,
   AGENT_LOGOUT,
+  DASHBOARD_BOOKINGS_RESET,
 } from '../constants';
 
 export const login = (email, password) => async (dispatch) => {
@@ -42,4 +43,5 @@ export const login = (email, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   localStorage.removeItem('agentInfo');
   dispatch({ type: AGENT_LOGOUT });
+  dispatch({ type: DASHBOARD_BOOKINGS_RESET });
 };

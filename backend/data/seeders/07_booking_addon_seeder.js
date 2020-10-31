@@ -4,14 +4,14 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('Booking_Addons', [
       {
-        booking_id: 1,
-        addon_id: 1,
+        bookingId: 1,
+        addonId: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        booking_id: 1,
-        addon_id: 2,
+        bookingId: 1,
+        addonId: 2,
         createdAt: new Date(),
         updatedAt: new Date(),
       },

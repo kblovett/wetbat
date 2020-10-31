@@ -8,14 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      agent_id: {
+      agentUuid: {
         type: Sequelize.UUID,
         references: {
           model: 'Agents',
-          key: 'id',
+          key: 'agentUuid',
         },
       },
-      traveller_id: {
+      travellerId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Travellers',
@@ -25,19 +25,19 @@ module.exports = {
       passengers: {
         type: Sequelize.INTEGER,
       },
-      depart_loc: {
+      departLoc: {
         type: Sequelize.STRING,
       },
-      depart_date: {
+      departDate: {
         type: Sequelize.DATE,
       },
-      dest_loc: {
+      destLoc: {
         type: Sequelize.STRING,
       },
-      return_date: {
+      returnDate: {
         type: Sequelize.DATE,
       },
-      booking_cost: {
+      bookingCost: {
         type: Sequelize.FLOAT,
       },
       createdAt: {

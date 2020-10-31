@@ -4,8 +4,14 @@ module.exports = {
     await queryInterface.createTable('Agents', {
       id: {
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      agentUuid: {
+        allowNull: false,
         type: Sequelize.UUID,
+        unique: true,
         defaultValue: Sequelize.UUIDV4,
       },
       fname: {

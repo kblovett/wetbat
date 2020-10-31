@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const asyncHandler = require('express-async-handler');
 
 // model imports
-const Agent = require('../models');
+const Agent = require('../models/agent');
 
 const protect = asyncHandler(async (req, res, next) => {
   let token;
@@ -11,14 +11,20 @@ const protect = asyncHandler(async (req, res, next) => {
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
+    // console.log(req.headers.authorization);
     try {
       token = req.headers.authorization.split(' ')[1];
+      // console.log(token);
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      req.agent = await Agent.findById(decoded.id).select('-password');
+      console.log(decoded);
+      req.agent = await Agent.findOne({
+        where: { agentUuid: decoded.id },
+      });
+      // console.log(req.agent);
       next();
     } catch (err) {
       res.status(401);
-      throw new Error('Not authorized, token failed');
+      throw new Error(err);
     }
   }
 

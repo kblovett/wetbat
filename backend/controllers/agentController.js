@@ -27,7 +27,7 @@ const registerAgent = asyncHandler(async (req, res) => {
     if (agent) {
       const { id, fname, lname, phone, email } = agent;
       res.status(201).json({
-        id,
+        agentUuid,
         fname,
         lname,
         phone,
@@ -53,14 +53,14 @@ const authAgent = asyncHandler(async (req, res) => {
   // console.log(agentPass, agent);
   const passCheck = await bcrypt.compare(password, agentPass);
   if (agent && passCheck) {
-    const { id, fname, lname, email } = agent;
+    const { agentUuid, fname, lname, email } = agent;
     res.json({
-      id,
+      agentUuid,
       fname,
       lname,
       email,
       // isAdmin,
-      token: generateToken(id),
+      token: generateToken(agentUuid),
     });
   } else {
     res.status(401);

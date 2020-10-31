@@ -1,29 +1,41 @@
 'use strict';
 const { DataTypes } = require('sequelize');
 const db = require('../data/db');
+const Booking = require('./booking');
 
 const Traveller = db.define('Traveller', {
   fname: DataTypes.STRING,
   lname: DataTypes.STRING,
   phone: DataTypes.STRING,
   email: { type: DataTypes.STRING, unique: true },
-  address_line1: DataTypes.STRING,
-  address_line2: DataTypes.STRING,
+  addressLine1: DataTypes.STRING,
+  addressLine2: DataTypes.STRING,
   city: DataTypes.STRING,
-  province_id: {
+  provinceId: {
     type: DataTypes.INTEGER,
     references: {
       model: 'Provinces',
-      key: 'province_id',
+      key: 'id',
     },
   },
-  country_id: {
+  countryId: {
     type: DataTypes.INTEGER,
     references: {
       model: 'Countries',
-      key: 'country_id',
+      key: 'id',
     },
   },
+});
+
+Traveller.hasMany(Booking, {
+  // sourceKey: 'agentUuid',
+  targetKey: 'travellerId',
+  foreignKey: 'travellerId',
+});
+Booking.belongsTo(Traveller, {
+  sourceKey: 'travellerId',
+  // targetKey: 'travellerId',
+  foreignKey: 'travellerId',
 });
 
 module.exports = Traveller;

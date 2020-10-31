@@ -21,23 +21,23 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true,
       },
-      address_line1: {
+      addressLine1: {
         type: Sequelize.STRING,
       },
-      address_line2: {
+      addressLine2: {
         type: Sequelize.STRING,
       },
       city: {
         type: Sequelize.STRING,
       },
-      province_id: {
+      provinceId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Provinces',
           key: 'id',
         },
       },
-      country_id: {
+      countryId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Countries',

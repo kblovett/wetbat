@@ -1,22 +1,25 @@
 'use strict';
 const { DataTypes } = require('sequelize');
 const db = require('../data/db');
+const Addon = require('./addon');
 
 const Booking_Addon = db.define('Booking_Addon', {
-  booking_id: {
+  bookingId: {
     type: DataTypes.INTEGER,
     references: {
       model: 'Bookings',
-      key: 'booking_id',
+      key: 'id',
     },
   },
-  addon_id: {
+  addonId: {
     type: DataTypes.INTEGER,
     references: {
       model: 'Addons',
-      key: 'addon_id',
+      key: 'id',
     },
   },
 });
+
+Booking_Addon.hasOne(Addon, { foreignKey: 'id' });
 
 module.exports = Booking_Addon;

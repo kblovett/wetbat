@@ -1,8 +1,10 @@
 'use strict';
-const { DataTypes } = require('sequelize');
+const { DataTypes, UUID } = require('sequelize');
 const db = require('../data/db');
+const Booking = require('./booking');
 
 const Agent = db.define('Agent', {
+  agentUuid: DataTypes.UUID,
   fname: DataTypes.STRING,
   lname: DataTypes.STRING,
   phone: DataTypes.STRING,
@@ -10,9 +12,15 @@ const Agent = db.define('Agent', {
   password: DataTypes.STRING,
 });
 
-// Agent.matchPassword = async function (enteredPassword) {
-//   console.log(enteredPassword, this.password());
-//   // return await bcrypt.compare(enteredPassword, this.getDataValue(password));
-// };
+Agent.hasMany(Booking, {
+  sourceKey: 'agentUuid',
+  targetKey: 'agentUuid',
+  foreignKey: 'agentUuid',
+});
+Booking.belongsTo(Agent, {
+  sourceKey: 'agentUuid',
+  targetKey: 'agentUuid',
+  foreignKey: 'agentUuid',
+});
 
 module.exports = Agent;

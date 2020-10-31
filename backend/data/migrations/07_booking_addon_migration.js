@@ -8,14 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      booking_id: {
+      bookingId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Bookings',
           key: 'id',
         },
       },
-      addon_id: {
+      addonId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Addons',

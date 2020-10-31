@@ -3,12 +3,17 @@ const asyncHandler = require('express-async-handler');
 
 // model imports
 const Booking = require('../models/booking');
+const Agent = require('../models/agent');
+const Traveller = require('../models/traveller');
 
 // @desc    Get all bookings
 // @route   POST /api/bookings
 // @access  Public
 const getBookings = asyncHandler(async (req, res) => {
-  const bookings = await Booking.findAll();
+  const bookings = await Booking.findAll({ include: [Agent, Traveller] });
+
+  // bookings.forEach(console.log(bookings));
+
   res.json(bookings);
 });
 

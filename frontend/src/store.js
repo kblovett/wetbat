@@ -3,10 +3,11 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // reducer imports
-import { agentLoginReducer } from 'reducers';
+import { agentLoginReducer, dashboardBookingsReducer } from 'reducers';
 
 const reducer = combineReducers({
   agentLogin: agentLoginReducer,
+  dashboardBookings: dashboardBookingsReducer,
 });
 
 const agentInfoFromLocalStorage = localStorage.getItem('agentInfo')
