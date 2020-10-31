@@ -53,10 +53,11 @@ const authAgent = asyncHandler(async (req, res) => {
   // console.log(agentPass, agent);
   const passCheck = await bcrypt.compare(password, agentPass);
   if (agent && passCheck) {
-    const { id, name, email } = agent;
+    const { id, fname, lname, email } = agent;
     res.json({
       id,
-      name,
+      fname,
+      lname,
       email,
       // isAdmin,
       token: generateToken(id),

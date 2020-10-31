@@ -10,7 +10,7 @@ export const agentLoginReducer = (state = {}, action) => {
     case AGENT_LOGIN_REQUEST:
       return { loading: true };
     case AGENT_LOGIN_SUCCESS:
-      return { loading: false, userInfo: action.payload };
+      return { loading: false, agentInfo: action.payload };
     case AGENT_LOGIN_FAIL:
       return { loading: false, error: action.payload };
     case AGENT_LOGOUT:

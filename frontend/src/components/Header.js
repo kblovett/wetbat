@@ -27,13 +27,21 @@ const Header = () => {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
-              <LinkContainer to='/booking'>
+              <LinkContainer to='/dashboard'>
                 <Nav.Link>
                   <FontAwesomeIcon icon={['fas', 'plane-departure']} /> Bookings
                 </Nav.Link>
               </LinkContainer>
               {agentInfo ? (
-                <NavDropdown title={agentInfo.name} id='agentname'>
+                <NavDropdown
+                  title={
+                    <span>
+                      <FontAwesomeIcon icon={['fas', 'user']} />{' '}
+                      {`${agentInfo.fname} ${agentInfo.lname}`}
+                    </span>
+                  }
+                  id='agentname'
+                >
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>
