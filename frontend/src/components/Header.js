@@ -27,11 +27,6 @@ const Header = () => {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
-              <LinkContainer to='/dashboard'>
-                <Nav.Link>
-                  <FontAwesomeIcon icon={['fas', 'plane-departure']} /> Bookings
-                </Nav.Link>
-              </LinkContainer>
               {agentInfo ? (
                 <NavDropdown
                   title={
@@ -42,8 +37,12 @@ const Header = () => {
                   }
                   id='agentname'
                 >
+                  <NavDropdown.Item href='/dashboard'>
+                    <FontAwesomeIcon icon={['fas', 'plane-departure']} />{' '}
+                    Bookings
+                  </NavDropdown.Item>
                   <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
+                    <FontAwesomeIcon icon={['fas', 'sign-out-alt']} /> Logout
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (

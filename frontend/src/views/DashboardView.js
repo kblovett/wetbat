@@ -1,13 +1,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import dayjs from 'dayjs';
 
 // bootstrap imports
 import { Table, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+// fontawesome imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // component imports
 import { Loader, Message } from 'components';
 // action imports
 import { dashboardGetBookings } from 'actions';
+// util imports
+import { numberFormat } from 'utils';
 
 const DashboardView = ({ history }) => {
   const dispatch = useDispatch();
@@ -37,10 +42,13 @@ const DashboardView = ({ history }) => {
         <Table striped bordered hover responsive className='table-sm'>
           <thead>
             <tr>
-              <th>id</th>
-              <th>name</th>
-              <th>email</th>
-              <th>admin</th>
+              <th>Agent</th>
+              <th>Traveller</th>
+              <th>Email</th>
+              <th>Destination</th>
+              <th>Date of Departure</th>
+              <th>Passengers</th>
+              <th>Booking Cost</th>
               <th></th>
             </tr>
           </thead>
@@ -48,33 +56,34 @@ const DashboardView = ({ history }) => {
             {bookings ? (
               bookings.map((booking) => (
                 <tr key={booking.id}>
-                  <td>{booking.id}</td>
-                  <td>{booking.name}</td>
-                  <td>
-                    <a href={`mailto:${booking.email}`}>{booking.email}</a>
+                  <td className='align-middle'>{`${booking.Agent.fname} ${booking.Agent.lname}`}</td>
+                  <td className='align-middle'>{`${booking.Traveller.fname} ${booking.Traveller.lname}`}</td>
+                  <td className='align-middle'>
+                    <a href={`mailto:${booking.Traveller.email}`}>
+                      {booking.Traveller.email}
+                    </a>
+                  </td>
+                  <td className='align-middle'>{booking.destLoc}</td>
+                  <td className='align-middle'>
+                    {dayjs(booking.departDate).format('MMMM DD, YYYY')}
+                  </td>
+                  <td className='align-middle text-center'>
+                    {booking.passengers}
+                  </td>
+                  <td className='align-middle text-center'>
+                    {numberFormat('cur-display', booking.bookingCost)}
                   </td>
                   <td>
-                    {booking.isAdmin ? (
-                      <i
-                        style={{ color: 'green' }}
-                        className='fas fa-check'
-                      ></i>
-                    ) : (
-                      <i style={{ color: 'red' }} className='fas fa-times'></i>
-                    )}
-                  </td>
-                  <td>
-                    <LinkContainer to={`/booking/${booking.id}/edit`}>
-                      <Button variant='light' className='btn-sm'>
-                        <i className='fas fa-edit'></i>
+                    <LinkContainer to={`/bookings/${booking.id}`}>
+                      <Button className='btn-sm btn-block'>
+                        <FontAwesomeIcon icon={['fas', 'edit']} />
                       </Button>
                     </LinkContainer>
                     <Button
-                      variant='danger'
-                      className='btn-sm'
-                      onClick={() => bookingDeleteHandler(booking.id)}
+                      className='btn-sm btn-block btn-danger'
+                      onClick={bookingDeleteHandler(booking.id)}
                     >
-                      <i className='fas fa-trash'></i>
+                      <FontAwesomeIcon icon={['fas', 'trash-alt']} />
                     </Button>
                   </td>
                 </tr>

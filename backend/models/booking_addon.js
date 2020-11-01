@@ -20,6 +20,15 @@ const Booking_Addon = db.define('Booking_Addon', {
   },
 });
 
-Booking_Addon.hasOne(Addon, { foreignKey: 'id' });
+Booking_Addon.hasOne(Addon, {
+  // sourceKey: 'agentUuid',
+  targetKey: 'addonId',
+  foreignKey: 'addonId',
+});
+Addon.belongsTo(Booking_Addon, {
+  sourceKey: 'addonId',
+  // targetKey: 'agentUuid',
+  foreignKey: 'addonId',
+});
 
 module.exports = Booking_Addon;

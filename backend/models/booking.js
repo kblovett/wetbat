@@ -1,8 +1,7 @@
 'use strict';
 const { DataTypes } = require('sequelize');
 const db = require('../data/db');
-// const Agent = require('./agent');
-// const Booking_Addon = require('./booking_addon');
+const Booking_Addon = require('./booking_addon');
 
 const Booking = db.define('Booking', {
   agentUuid: {
@@ -27,15 +26,15 @@ const Booking = db.define('Booking', {
   bookingCost: DataTypes.FLOAT,
 });
 
-// Booking.belongsTo(Agent, {
-//   sourceKey: 'agentUuid',
-//   targetKey: 'agentUuid',
-//   foreignKey: 'agentUuid',
-// });
-
-// Booking.belongsTo(Agent);
-// Booking.hasOne(Agent, { targetKey: 'agent_id' });
-// Booking.belongsTo(Agent);
-// Booking.hasMany(Booking_Addon, { foreignKey: 'booking_id' });
+Booking.hasMany(Booking_Addon, {
+  // sourceKey: 'agentUuid',
+  targetKey: 'bookingId',
+  foreignKey: 'bookingId',
+});
+Booking_Addon.belongsTo(Booking, {
+  sourceKey: 'bookingId',
+  // targetKey: 'agentUuid',
+  foreignKey: 'bookingId',
+});
 
 module.exports = Booking;
