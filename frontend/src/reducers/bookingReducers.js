@@ -6,19 +6,19 @@ import {
 } from '../constants';
 
 export const bookingContainerReducer = (
-  state = { bookingContainer: [] },
+  state = { loading: true, Addons: [] },
   action
 ) => {
   switch (action.type) {
     case BOOKING_CONTAINER_REQUEST:
-      return { loading: true };
+      return { ...state, loading: true };
     case BOOKING_CONTAINER_SUCCESS:
-      return { loading: false, bookingContainer: action.payload };
+      return { loading: false, booking: action.payload };
     case BOOKING_CONTAINER_FAIL:
       return { loading: false, error: action.payload };
     case BOOKING_CONTAINER_RESET:
       return {
-        bookingContainer: [],
+        booking: {},
       };
 
     default:

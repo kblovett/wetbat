@@ -15,6 +15,7 @@ const getBookings = asyncHandler(async (req, res) => {
   const bookings = await Booking.findAll({
     include: [Agent, Traveller, Addon],
   });
+  // console.log(bookings);
   res.json(bookings);
 });
 
@@ -26,7 +27,7 @@ const getBookingById = asyncHandler(async (req, res) => {
     where: { id: req.params.id },
     include: [Agent, Traveller, Addon],
   });
-
+  // console.log(booking);
   res.json(booking);
 });
 
