@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 module.exports = {
-  // development: {
   username: process.env.DBUSER,
   password: process.env.DBPW,
   database: process.env.DBNAME,
@@ -13,5 +12,4 @@ module.exports = {
     acquire: 30000,
     idle: 10000,
   },
-  // },
 };
