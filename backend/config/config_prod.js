@@ -1,9 +1,22 @@
 require('dotenv').config();
 
 module.exports = {
-  connectionString: process.env.DATABASE_URL,
+  host: process.env.PRODDBHOST,
+  port: process.env.PRODDBPORT,
+  database: process.env.PRODDBNAME,
+  username: process.env.PRODDBUSER,
+  password: process.env.PRODDBPW,
   dialect: 'postgres',
-  ssl: {
-    rejectUnauthorized: false,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
   },
 };
