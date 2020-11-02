@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
 const colors = require('colors');
+const path = require('path');
 
 // middleware imports
 const { errorHandler, notFound } = require('./middleware/errorMiddleware');
@@ -32,6 +33,18 @@ app.use('/api/provinces', provinceRouter);
 app.use('/api/countries', countryRouter);
 app.use('/api/addons', addonRouter);
 app.use('/api/booking_addons', booking_addonRouter);
+
+// folder paths for production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  );
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running!');
+  });
+}
 
 // 404 and errorhandler middleware
 app.use(notFound);
