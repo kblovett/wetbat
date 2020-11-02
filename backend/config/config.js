@@ -17,11 +17,11 @@ const dotenv = require('dotenv').config();
 //   };
 // } else if (process.env.NODE_ENV === 'production') {
 module.exports = {
-  host: process.env.PRODDBHOST,
-  port: process.env.PRODDBPORT,
-  database: process.env.PRODDBNAME,
-  username: process.env.PRODDBUSER,
-  password: process.env.PRODDBPW,
+  host: 'ec2-52-0-155-79.compute-1.amazonaws.com',
+  port: 5432,
+  database: 'dejt8k54ibgmjm',
+  username: 'qcfdaudwyzacak',
+  password: 'fd0d853f15c05533aa9737b200862e17f5e3fbe2d2417a0e447d8da208f4b3cc',
   dialect: 'postgres',
   dialectOptions: {
     ssl: {
