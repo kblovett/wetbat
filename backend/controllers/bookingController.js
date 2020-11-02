@@ -13,11 +13,8 @@ const Addon = require('../models/addon');
 // @access  Public
 const getBookings = asyncHandler(async (req, res) => {
   const bookings = await Booking.findAll({
-    include: [Agent, Traveller, Booking_Addon],
+    include: [Agent, Traveller, Addon],
   });
-
-  // bookings.forEach(console.log(bookings));
-
   res.json(bookings);
 });
 
@@ -25,7 +22,11 @@ const getBookings = asyncHandler(async (req, res) => {
 // @route   POST /api/bookings/:id
 // @access  Public
 const getBookingById = asyncHandler(async (req, res) => {
-  const booking = await Booking.findOne({ where: { id: req.params.id } });
+  const booking = await Booking.findOne({
+    where: { id: req.params.id },
+    include: [Agent, Traveller, Addon],
+  });
+
   res.json(booking);
 });
 

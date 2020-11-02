@@ -2,6 +2,7 @@
 const { DataTypes } = require('sequelize');
 const db = require('../data/db');
 const Booking_Addon = require('./booking_addon');
+const Addon = require('./addon');
 
 const Booking = db.define('Booking', {
   agentUuid: {
@@ -26,15 +27,17 @@ const Booking = db.define('Booking', {
   bookingCost: DataTypes.FLOAT,
 });
 
-Booking.hasMany(Booking_Addon, {
-  // sourceKey: 'agentUuid',
-  targetKey: 'bookingId',
+Booking.belongsToMany(Addon, {
+  through: Booking_Addon,
+  // targetKey: 'bookingId',
+  // sourceKey: 'bookingId',
   foreignKey: 'bookingId',
+  otherKey: 'addonId',
 });
-Booking_Addon.belongsTo(Booking, {
-  sourceKey: 'bookingId',
-  // targetKey: 'agentUuid',
-  foreignKey: 'bookingId',
-});
+// Addon.belongsTo(Booking, {
+//   through: Booking_Addon,
+//   sourceKey: 'bookingId',
+//   foreignKey: 'bookingId',
+// });
 
 module.exports = Booking;

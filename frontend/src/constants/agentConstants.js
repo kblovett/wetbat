@@ -1,4 +1,3 @@
-// login constants
 export const AGENT_LOGIN_REQUEST = 'AGENT_LOGIN_REQUEST';
 export const AGENT_LOGIN_SUCCESS = 'AGENT_LOGIN_SUCCESS';
 export const AGENT_LOGIN_FAIL = 'AGENT_LOGIN_FAIL';

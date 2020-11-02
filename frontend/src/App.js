@@ -9,7 +9,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
 import { Header, Footer } from 'components';
-import { HomeView, LoginView, DashboardView } from 'views';
+import { HomeView, LoginView, DashboardView, BookingView } from 'views';
 
 const App = () => {
   library.add(fab, fas);
@@ -20,6 +20,7 @@ const App = () => {
         <Container>
           <Route path='/login' component={LoginView} exact />
           <Route path='/dashboard' component={DashboardView} exact />
+          <Route path='/bookings/:id' component={BookingView} exact />
           <Route path='/' component={HomeView} exact />
         </Container>
       </main>
